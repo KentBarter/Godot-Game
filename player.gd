@@ -1,51 +1,88 @@
 extends Actor
-@export var stomp_impulse: = 600.0
 
-func _on_StompDetector_area_entered(area: Area2D) -> void:
-	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
+@export var stomp_impulse := 600.0
 
-
-func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
-	die()
+func _ready() -> void:
+	$AnimatedSprite2D.play("idle")
 
 func _physics_process(delta: float) -> void:
-	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
-	var direction: = get_direction()
-	
-	# changeing the look direction
-	if direction[0] == -1 and get_node("Sprite2D").flip_h == false:
-		get_node("Sprite2D").set_flip_h(true)
-	if direction[0] == 1 and get_node("Sprite2D").flip_h == true:
-		get_node("Sprite2D").set_flip_h(false)
-	
-	_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
-	var snap: Vector2 = Vector2.DOWN * 60.0 if direction.y == 0.0 else Vector2.ZERO
-	move_and_slide()	
+	print(position)
+	# Apply gravity
+	velocity.y += gravity * delta
+
+	# Stop upward movement when the jump button is released
+	var is_jump_interrupted := (
+		Input.is_action_just_released("ui_accept")
+		and velocity.y < 0.0
+	)
+
+	var direction := get_direction()
+
+	# Change the player's look direction
+	if direction.x == -1:
+		$AnimatedSprite2D.flip_h = true
+	elif direction.x == 1:
+		$AnimatedSprite2D.flip_h = false
+
+	# Calculate movement
+	velocity = calculate_move_velocity(
+		velocity,
+		direction,
+		speed,
+		is_jump_interrupted
+	)
+
+	# Move the CharacterBody2D
+	move_and_slide()
 
 
 func get_direction() -> Vector2:
 	return Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		-Input.get_action_strength("jump") if is_on_floor() and Input.is_action_just_pressed("jump") else 0.0
+		Input.get_axis("move_left", "move_right"),
+		-1.0 if is_on_floor()
+		and Input.is_action_just_pressed("ui_accept")
+		else 0.0
 	)
 
-func calculate_move_velocity(
-		linear_velocity: Vector2,
-		direction: Vector2,
-		speed: Vector2,
-		is_jump_interrupted: bool
-	) -> Vector2:
-	var velocity: = linear_velocity
-	velocity.x = speed.x * direction.x
-	if direction.y != 0.0:
-		velocity.y = speed.y * direction.y
-	if is_jump_interrupted:
-		velocity.y = 0.0
-	return velocity
 
-func calculate_stomp_velocity(linear_velocity: Vector2, stomp_impulse: float) -> Vector2:
-	var stomp_jump: = -speed.y if Input.is_action_pressed("jump") else -stomp_impulse
+func calculate_move_velocity(
+	linear_velocity: Vector2,
+	direction: Vector2,
+	move_speed: Vector2,
+	is_jump_interrupted: bool
+) -> Vector2:
+	var new_velocity := linear_velocity
+
+	new_velocity.x = move_speed.x * direction.x
+
+	if direction.y != 0.0:
+		new_velocity.y = move_speed.y * direction.y
+
+	if is_jump_interrupted:
+		new_velocity.y = 0.0
+
+	return new_velocity
+
+
+func calculate_stomp_velocity(
+	linear_velocity: Vector2,
+	stomp_impulse: float
+) -> Vector2:
+	var stomp_jump := (
+		-speed.y
+		if Input.is_action_pressed("ui_accept")
+		else -stomp_impulse
+	)
+
 	return Vector2(linear_velocity.x, stomp_jump)
+
+
+func _on_stomp_detector_area_entered(area: Area2D) -> void:
+	velocity = calculate_stomp_velocity(velocity, stomp_impulse)
+
+
+func _on_enemy_detector_body_entered(body: PhysicsBody2D) -> void:
+	die()
 
 
 func die() -> void:

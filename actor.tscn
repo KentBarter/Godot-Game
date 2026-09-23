@@ -4,3 +4,4 @@
 
 [node name="Actor" type="CharacterBody2D" unique_id=1799506878]
 script = ExtResource("1_hr3hk")
+speed = Vector2(0, 0)
