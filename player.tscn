@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dnwjy8m2qhknw"]
+
+[ext_resource type="Script" uid="uid://ccrwkkjn0btr5" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://boob7vjk35stu" path="res://Sprites/craftpix-net-563568-free-wraith-tiny-style-2d-sprites/PNG/Wraith_01/PNG Sequences/Idle/Wraith_01_Idle_000.png" id="2_onrkg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eidqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_onrkg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eidqd"]
+size = Vector2(211, 294)
+
+[node name="Player" type="Area2D" unique_id=1221548138]
+gravity = 980.0
+script = ExtResource("1_onrkg")
+speed = null
+gravity = 980.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1479559678]
+sprite_frames = SubResource("SpriteFrames_eidqd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=574138434]
+position = Vector2(-19.5, -31)
+shape = SubResource("RectangleShape2D_eidqd")

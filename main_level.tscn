@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cw23whwq6co2"]
+
+[ext_resource type="Script" uid="uid://bnkinwaympn4y" path="res://main_level.gd" id="1_bw3m6"]
+[ext_resource type="Texture2D" uid="uid://ceaafxma4m0bg" path="res://Sprites/Sprites_1/PNG/Background/background.png" id="2_6614m"]
+
+[node name="MainLevel" type="Node2D" unique_id=45410580]
+script = ExtResource("1_bw3m6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=838239657]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=106468060]
+offset_right = 1056.0
+offset_bottom = 576.0
+texture = ExtResource("2_6614m")
+expand_mode = 1

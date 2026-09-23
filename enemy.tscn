@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://djkakydntf2lu"]
+
+[ext_resource type="Script" uid="uid://cc38slna1yumo" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://dufdng4ylnem4" path="res://Sprites/craftpix-net-563568-free-wraith-tiny-style-2d-sprites/PNG/Wraith_02/PNG Sequences/Idle/Wraith_02_Idle_000.png" id="1_7k104"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xaro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7k104")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eidqd"]
+size = Vector2(215, 231)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq3r3"]
+size = Vector2(215, 71)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1046282149]
+script = ExtResource("1_4gyqm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=34822856]
+sprite_frames = SubResource("SpriteFrames_7xaro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1037768974]
+position = Vector2(-6.5, 7.5)
+shape = SubResource("RectangleShape2D_eidqd")
+
+[node name="StompArea" type="CollisionShape2D" parent="." unique_id=382894820]
+position = Vector2(-6.5, -143.5)
+shape = SubResource("RectangleShape2D_tq3r3")

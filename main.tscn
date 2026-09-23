@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://lt0l15mjmjbq"]
+
+[ext_resource type="Script" uid="uid://xpdc2nce3ypo" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c63p4ryko57ee" path="res://Hud.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node2D" unique_id=164386852]
+script = ExtResource("1_0xm2m")
+
+[node name="UIBackground" type="ColorRect" parent="." unique_id=1741359787]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.08699075, 0, 0.74306446, 1)
+
+[node name="Hud" parent="." unique_id=1286039855 instance=ExtResource("1_ig7tw")]

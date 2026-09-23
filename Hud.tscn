@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c63p4ryko57ee"]
+
+[ext_resource type="Script" uid="uid://hc2xrpmvkig6" path="res://hud.gd" id="1_d4yu0"]
+
+[node name="Hud" type="CanvasLayer" unique_id=1286039855]
+script = ExtResource("1_d4yu0")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=785940149]
+offset_left = 7.0
+offset_right = 1931.0
+offset_bottom = 135.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameName" type="Label" parent="." unique_id=1159681115]
+offset_left = 815.0
+offset_top = 478.0
+offset_right = 1060.0
+offset_bottom = 593.0
+text = "2D Platformer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameStartButton" type="Button" parent="." unique_id=304300591]
+offset_left = 881.0
+offset_top = 578.0
+offset_right = 996.0
+offset_bottom = 629.0
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=539963714]
+
+[connection signal="pressed" from="GameStartButton" to="." method="_on_game_start_button_pressed"]
