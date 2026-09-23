@@ -6,11 +6,8 @@ func _ready() -> void:
 	$AnimatedSprite2D.play("idle")
 
 func _physics_process(delta: float) -> void:
-	print(position)
-	# Apply gravity
 	velocity.y += gravity * delta
 
-	# Stop upward movement when the jump button is released
 	var is_jump_interrupted := (
 		Input.is_action_just_released("ui_accept")
 		and velocity.y < 0.0
@@ -18,13 +15,11 @@ func _physics_process(delta: float) -> void:
 
 	var direction := get_direction()
 
-	# Change the player's look direction
 	if direction.x == -1:
 		$AnimatedSprite2D.flip_h = true
 	elif direction.x == 1:
 		$AnimatedSprite2D.flip_h = false
 
-	# Calculate movement
 	velocity = calculate_move_velocity(
 		velocity,
 		direction,
@@ -32,8 +27,13 @@ func _physics_process(delta: float) -> void:
 		is_jump_interrupted
 	)
 
-	# Move the CharacterBody2D
 	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var body := collision.get_collider()
+		if body.is_in_group("Enemy"):
+			die()
 
 
 func get_direction() -> Vector2:
@@ -86,4 +86,5 @@ func _on_enemy_detector_body_entered(body: PhysicsBody2D) -> void:
 
 
 func die() -> void:
+	print("PLAYER DIE CALLED")
 	queue_free()

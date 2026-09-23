@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bas1lastyem0b"]
+
+[ext_resource type="Texture2D" uid="uid://biimur2tsbe6n" path="res://Sprites/Sprites_1/PNG/Platfromer/Crystal_Caves_Forest_2D_Platformer_Tileset_Platformer - Ground 02.png" id="1_mi635"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eidqd"]
+size = Vector2(336, 131)
+
+[node name="Platform" type="StaticBody2D" unique_id=2072126682]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=858516157]
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 337.0
+offset_bottom = 130.0
+texture = ExtResource("1_mi635")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=431274252]
+position = Vector2(167, 65.5)
+shape = SubResource("RectangleShape2D_eidqd")

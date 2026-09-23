@@ -17,14 +17,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eidqd"]
 size = Vector2(215, 231)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq3r3"]
-size = Vector2(215, 71)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e610r"]
+size = Vector2(211, 65)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1046282149]
 script = ExtResource("1_4gyqm")
-score = null
-speed = null
-gravity = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=34822856]
 sprite_frames = SubResource("SpriteFrames_7xaro")
@@ -34,6 +31,9 @@ frame_progress = 0.17230758
 position = Vector2(-6.5, 7.5)
 shape = SubResource("RectangleShape2D_eidqd")
 
-[node name="StompArea2D" type="CollisionShape2D" parent="." unique_id=382894820]
-position = Vector2(-6.5, -143.5)
-shape = SubResource("RectangleShape2D_tq3r3")
+[node name="StompArea2D" type="Area2D" parent="." unique_id=314176865]
+position = Vector2(5, -140)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompArea2D" unique_id=1277115015]
+position = Vector2(-12.5, -1.5)
+shape = SubResource("RectangleShape2D_e610r")
