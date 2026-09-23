@@ -11,6 +11,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eidqd"]
 size = Vector2(1936, 116)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq3r3"]
+size = Vector2(106, 947)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e610r"]
+size = Vector2(94.5, 939)
+
 [node name="MainLevel" type="Node2D" unique_id=45410580]
 position = Vector2(940, 345)
 script = ExtResource("1_bw3m6")
@@ -27,11 +33,23 @@ position = Vector2(31, 673)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=190953484]
 shape = SubResource("RectangleShape2D_eidqd")
 
+[node name="WallLeft" type="StaticBody2D" parent="." unique_id=1353738590]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft" unique_id=502685577]
+position = Vector2(-990, 127.5)
+shape = SubResource("RectangleShape2D_tq3r3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2007228261]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=661207401]
+position = Vector2(1033.75, 119.5)
+shape = SubResource("RectangleShape2D_e610r")
+
 [node name="Platform" parent="." unique_id=1564978443 instance=ExtResource("4_5ymk8")]
 position = Vector2(-163, 163)
 
 [node name="Platform2" parent="." unique_id=1431430620 instance=ExtResource("4_5ymk8")]
-position = Vector2(309, -94)
+position = Vector2(336, -69)
 
 [node name="Item" parent="." unique_id=1713250200 instance=ExtResource("5_4mnpp")]
 position = Vector2(-60, 10)
