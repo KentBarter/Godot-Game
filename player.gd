@@ -88,3 +88,6 @@ func _on_enemy_detector_body_entered(body: PhysicsBody2D) -> void:
 func die() -> void:
 	print("PLAYER DIE CALLED")
 	queue_free()
+	
+	# getting the game over screen
+	$Hud.show_game_over()

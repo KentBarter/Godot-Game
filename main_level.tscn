@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnwjy8m2qhknw" path="res://player.tscn" id="3_bhu08"]
 [ext_resource type="PackedScene" uid="uid://bas1lastyem0b" path="res://platform.tscn" id="4_5ymk8"]
 [ext_resource type="PackedScene" uid="uid://oqy15gpwydkx" path="res://item.tscn" id="5_4mnpp"]
+[ext_resource type="PackedScene" uid="uid://bxtoega74tvlf" path="res://key.tscn" id="6_ctebd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eidqd"]
 size = Vector2(1936, 116)
@@ -33,7 +34,10 @@ position = Vector2(-163, 163)
 position = Vector2(309, -94)
 
 [node name="Item" parent="." unique_id=1713250200 instance=ExtResource("5_4mnpp")]
-position = Vector2(-54, 6)
+position = Vector2(-60, 10)
+
+[node name="Key" parent="." unique_id=1974678554 instance=ExtResource("6_ctebd")]
+position = Vector2(363, -297)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=838239657]
 layer = -1
